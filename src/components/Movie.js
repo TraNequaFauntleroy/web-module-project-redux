@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Movie = (props) => {
     const { id } = useParams();
@@ -47,4 +48,10 @@ const Movie = (props) => {
     </div>);
 }
 
-export default Movie;
+const mapStateToProps = (state) => {
+    return({
+      description: state.description  
+    })
+}
+
+export default connect(mapStateToProps)(Movie);

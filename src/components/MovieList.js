@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux'
 
 import MovieListItem from './MovieListItem';
 import MovieFooter from './MovieFooter';
@@ -11,10 +12,10 @@ const MovieList = (props)=> {
             <table className="table table-striped table-hover">
                 <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Director</th>
-                    <th>Genre</th>
-                    <th>Metascore</th>
+                    <th>{props.title}</th>
+                    <th>{props.director}</th>
+                    <th>{props.genre}</th>
+                    <th>{props.metascore}</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -31,4 +32,13 @@ const MovieList = (props)=> {
     );
 }
 
-export default MovieList;
+const mapStateToProps = (state) => {
+    return({
+        title: state.title,
+        director: state.director,
+        genre: state.genre,
+        metascore: state.metascore
+    })
+}
+
+export default connect(mapStateToProps)(MovieList);
